@@ -12,5 +12,5 @@
 /captures
 .externalNativeBuild
 .cxx
-app/src/androidTest
-app/src/test
+com.example.myapplication.ExampleInstrumentedTest
+com.example.myapplication.ExampleUnitTest
