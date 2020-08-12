@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp">
+
+    <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="6dp"
+        app:cardBackgroundColor="#EDEDED"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="3dp">
+
+
+            <ImageView
+                android:id="@+id/fileimage"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/pdf"
+                tools:srcCompat="@drawable/ic_camera" />
+
+
+            <TextView
+                android:id="@+id/filename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="0dp"
+                android:layout_toEndOf="@id/fileimage"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="@string/text_1"
+                android:textSize="16sp"
+                tools:ignore="RelativeOverlap" />
+
+            <ImageView
+                android:id="@+id/item_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="@string/options"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:src="@drawable/item_menu"
+                app:srcCompat="@drawable/item_menu" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
