@@ -14,11 +14,5 @@
         android:title="@string/camera"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/add_file"
-        android:icon="@drawable/ic_folder"
-        android:title="@string/add_photo"
-        app:showAsAction="always" />
-
 
 </menu>

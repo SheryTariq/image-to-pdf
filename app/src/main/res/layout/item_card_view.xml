@@ -2,17 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingStart="10dp"
-    android:paddingEnd="10dp">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginBottom="6dp"
-        app:cardBackgroundColor="#EDEDED"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="0dp">
+        android:layout_margin="6dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -24,7 +22,7 @@
 
 
             <ImageView
-                android:id="@+id/fileimage"
+                android:id="@+id/image"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/pdf"
@@ -39,10 +37,10 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="0dp"
-                android:layout_toEndOf="@id/fileimage"
+                android:layout_toEndOf="@id/image"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:text="@string/text_1"
+                android:text="@string/file_name"
                 android:textSize="16sp"
                 tools:ignore="RelativeOverlap" />
 
@@ -51,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
+                android:background="?android:attr/actionBarItemBackground"
                 android:contentDescription="@string/options"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"

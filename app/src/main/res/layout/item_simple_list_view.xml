@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="2dp"
+    android:background="#eee"
+    android:clickable="true"
+    android:focusable="true">
+
+    <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/pdf"
+            tools:srcCompat="@drawable/ic_pdf" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_toEndOf="@id/image"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/filename"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/file_name"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="#2B3D4D" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:text="@string/location"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="#AEB6BD"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/item_menu"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:background="?android:attr/actionBarItemBackground"
+            android:contentDescription="@string/options"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:src="@drawable/item_menu"
+            app:srcCompat="@drawable/item_menu" />
+    </RelativeLayout>
+
+</LinearLayout>

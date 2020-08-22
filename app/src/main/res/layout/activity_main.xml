@@ -24,4 +24,13 @@
         android:focusable="true"
         android:src="@drawable/ic_add" />
 
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/empty_view"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:contentDescription="@string/empty_view"-->
+    <!--        android:src="@drawable/ic_note" />-->
+
+
 </RelativeLayout>

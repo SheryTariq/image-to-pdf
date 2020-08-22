@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import static com.example.myapplication.MainActivity.toast;
 
 public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
-
-    OnclickListener mListener;
     ArrayList<Item> items;
     Context context;
 
@@ -28,14 +26,11 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         this.context = context;
     }
 
-    public void setOnClickListener(OnclickListener listener) {
-        mListener = listener;
-    }
 
     @NonNull
     @Override
     public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list1, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_simple_list_view, parent, false);
         return new ExampleViewHolder(itemView);
     }
 
@@ -107,10 +102,6 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         return items.size();
     }
 
-    public interface OnclickListener {
-        void OnItemClick(int position);
-    }
-
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView fileImage;
@@ -121,7 +112,7 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
 
             super(itemView);
 
-            fileImage = itemView.findViewById(R.id.fileimage);
+            fileImage = itemView.findViewById(R.id.image);
             fileName = itemView.findViewById(R.id.filename);
             itemMenu = itemView.findViewById(R.id.item_menu);
 
