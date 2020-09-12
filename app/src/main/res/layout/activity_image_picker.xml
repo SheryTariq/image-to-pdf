@@ -24,8 +24,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="casual"
+
+            android:fontFamily="@font/happy_monkey"
+            android:padding="15dp"
             android:text="@string/looks_like_you_don_t_have_any_images"
             android:textAlignment="center"
             android:textAppearance="?android:textAppearanceMedium"

@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="200dp"
-            android:fontFamily="casual"
+            android:fontFamily="@font/happy_monkey"
             android:text="@string/no_recent_files_to_show"
             android:textAlignment="center"
             android:textAppearance="?android:textAppearanceMedium"

@@ -42,7 +42,7 @@ public class ImagePickerActivity extends AppCompatActivity implements LoaderMana
         mLayoutManager = new GridLayoutManager(this, spanCount);
         mRecyclerView = findViewById(R.id.image_recycler_view);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, 1, false));
+        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, 2, false));
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mImageCursorAdapter);
 
