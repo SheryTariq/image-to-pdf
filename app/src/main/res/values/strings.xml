@@ -16,4 +16,10 @@
     <string name="add_photo">Add Photo</string>
     <string name="sample">sampleImage</string>
     <string name="empty_view">empty_view</string>
+    <string name="image_item">image</string>
+    <string name="im">image</string>
+    <string name="empty_image">empty_image</string>
+    <string name="no_recent_files_to_show">No recent files to show</string>
+    <string name="no_images">no_images</string>
+    <string name="looks_like_you_don_t_have_any_images">Looks like you do not have any images</string>
 </resources>

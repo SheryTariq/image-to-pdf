@@ -17,11 +17,11 @@ import java.util.ArrayList;
 
 import static com.example.myapplication.MainActivity.toast;
 
-public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder> {
+public class RecentFilesAdapter extends RecyclerView.Adapter<RecentFilesAdapter.RecentFilesViewHolder> {
     ArrayList<Item> items;
     Context context;
 
-    public ExampleAdapter(ArrayList<Item> items, Context context) {
+    public RecentFilesAdapter(ArrayList<Item> items, Context context) {
         this.items = items;
         this.context = context;
     }
@@ -29,13 +29,13 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
 
     @NonNull
     @Override
-    public ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecentFilesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_simple_list_view, parent, false);
-        return new ExampleViewHolder(itemView);
+        return new RecentFilesViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ExampleViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final RecentFilesViewHolder holder, final int position) {
         Item currentItem = items.get(position);
         final int currentPosition = holder.getAdapterPosition();
 
@@ -102,13 +102,13 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ExampleV
         return items.size();
     }
 
-    public static class ExampleViewHolder extends RecyclerView.ViewHolder {
+    public static class RecentFilesViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView fileImage;
         public TextView fileName;
         public ImageView itemMenu;
 
-        public ExampleViewHolder(@NonNull View itemView) {
+        public RecentFilesViewHolder(@NonNull View itemView) {
 
             super(itemView);
 

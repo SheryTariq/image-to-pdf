@@ -4,13 +4,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-
     tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/empty_view_files"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:contentDescription="@string/empty_view"
+            android:src="@drawable/download" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="200dp"
+            android:fontFamily="casual"
+            android:text="@string/no_recent_files_to_show"
+            android:textAlignment="center"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -22,15 +47,8 @@
         android:layout_marginBottom="20dp"
         android:background="?android:attr/selectableItemBackground"
         android:focusable="true"
-        android:src="@drawable/ic_add" />
-
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/empty_view"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:contentDescription="@string/empty_view"-->
-    <!--        android:src="@drawable/ic_note" />-->
+        android:src="@drawable/ic_add"
+        tools:ignore="RelativeOverlap" />
 
 
 </RelativeLayout>

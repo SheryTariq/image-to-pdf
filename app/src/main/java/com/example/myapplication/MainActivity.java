@@ -1,11 +1,14 @@
 package com.example.myapplication;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +17,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,22 +32,29 @@ import java.util.Locale;
 import static android.widget.Toast.LENGTH_SHORT;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int EXTERNAL_STORAGE_PERMISSION_CODE = 0;
+    private static final String TAG = "MainActivity";
     public static int REQUEST_IMAGE_CAPTURE = 1;
     static Toast toast = null;
-    ExampleAdapter mAdapter;
+    RecentFilesAdapter mAdapter;
     ArrayList<Item> items;
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
     Bitmap mImageBitmap;
     String mFileName;
+    View emptyView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setAdapter();
-        Environment.getExternalStorageState();
         setAddButton();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        Log.d(TAG, "onCreate px:" + displayMetrics.widthPixels + " dp:" + displayMetrics.density);
+        mRecyclerView.setVisibility((items.isEmpty()) ? View.GONE : View.VISIBLE);
+        emptyView.setVisibility((items.isEmpty()) ? View.VISIBLE : View.GONE);
     }
 
     private void itemAdded() {
@@ -51,16 +63,29 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mRecyclerView.setVisibility((items.isEmpty()) ? View.GONE : View.VISIBLE);
+        emptyView.setVisibility((items.isEmpty()) ? View.VISIBLE : View.GONE);
+    }
+
     private void setAddButton() {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (toast != null) {
-                    toast.cancel();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                        Intent intent = new Intent(MainActivity.this, ImagePickerActivity.class);
+                        startActivity(intent);
+                    } else {
+                        ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, EXTERNAL_STORAGE_PERMISSION_CODE);
+                    }
+                } else {
+                    Intent intent = new Intent(MainActivity.this, ImagePickerActivity.class);
+                    startActivity(intent);
                 }
-                toast = Toast.makeText(MainActivity.this, "Fab Clicked", LENGTH_SHORT);
-                toast.show();
             }
         });
     }
@@ -69,9 +94,10 @@ public class MainActivity extends AppCompatActivity {
         items = new ArrayList<>();
         mRecyclerView = findViewById(R.id.recycler_view);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ExampleAdapter(items, this);
+        mAdapter = new RecentFilesAdapter(items, this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+        emptyView = findViewById(R.id.empty_view_files);
     }
 
     @Override
@@ -132,5 +158,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void setFileName() {
         mFileName = new SimpleDateFormat("ddMMyyyy_hhmmss", Locale.US).format(new Date());
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == EXTERNAL_STORAGE_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Intent intent = new Intent(MainActivity.this, ImagePickerActivity.class);
+                startActivity(intent);
+            }
+        }
     }
 }
