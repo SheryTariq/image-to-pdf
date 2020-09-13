@@ -7,8 +7,6 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,9 +48,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setAdapter();
         setAddButton();
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        Log.d(TAG, "onCreate px:" + displayMetrics.widthPixels + " dp:" + displayMetrics.density);
         mRecyclerView.setVisibility((items.isEmpty()) ? View.GONE : View.VISIBLE);
         emptyView.setVisibility((items.isEmpty()) ? View.VISIBLE : View.GONE);
     }

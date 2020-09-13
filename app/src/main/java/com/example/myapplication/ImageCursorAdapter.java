@@ -41,7 +41,6 @@ public class ImageCursorAdapter extends RecyclerView.Adapter<ImageCursorAdapter.
         Glide.with(mContext)
                 .load(getUriFromMediaStore(position))
                 .placeholder(new ColorDrawable(Color.GRAY))
-                //.override(96, 96)
                 .centerCrop()
                 .into(holder.imageView);
     }

@@ -1,9 +1,9 @@
 package com.example.myapplication;
 
 import android.database.Cursor;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,7 +16,6 @@ import androidx.core.app.NavUtils;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.CursorLoader;
 import androidx.loader.content.Loader;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ImagePickerActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -37,26 +36,22 @@ public class ImagePickerActivity extends AppCompatActivity implements LoaderMana
     }
 
     private void setAdapter() {
-        int spanCount = calculateNoOfColumns(120);
+
         mImageCursorAdapter = new ImageCursorAdapter(this);
-        mLayoutManager = new GridLayoutManager(this, spanCount);
-        mRecyclerView = findViewById(R.id.image_recycler_view);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, 2, false));
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setAdapter(mImageCursorAdapter);
-
         emptyView = findViewById(R.id.empty_view_images);
-        mRelativeLayout = findViewById(R.id.item_image_relative);
+        mRecyclerView = findViewById(R.id.image_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
 
+        mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                super.getItemOffsets(outRect, view, parent, state);
+                outRect.set(1, 1, 1, 1);
+            }
+        });
+
+        mRecyclerView.setAdapter(mImageCursorAdapter);
         LoaderManager.getInstance(this).initLoader(IMAGE_PICKER_LOADER, null, this);
-
-    }
-
-    public int calculateNoOfColumns(float columnWidthDp) {
-        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
-        float screenWidthDp = displayMetrics.widthPixels / displayMetrics.density;
-        return (int) (screenWidthDp / columnWidthDp + 0.5);
     }
 
     @Override
@@ -69,7 +64,6 @@ public class ImagePickerActivity extends AppCompatActivity implements LoaderMana
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.camera:
-
                 return true;
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
@@ -86,7 +80,6 @@ public class ImagePickerActivity extends AppCompatActivity implements LoaderMana
                 MediaStore.Images.Media._ID,
                 MediaStore.Images.Media.DISPLAY_NAME,
                 MediaStore.Images.Media.SIZE,
-                MediaStore.Images.Media.DATA,
                 MediaStore.Images.Media.DATE_ADDED
         };
 

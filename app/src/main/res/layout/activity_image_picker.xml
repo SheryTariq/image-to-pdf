@@ -24,7 +24,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:fontFamily="@font/happy_monkey"
             android:padding="15dp"
             android:text="@string/looks_like_you_don_t_have_any_images"
@@ -34,7 +33,11 @@
     </LinearLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.example.myapplication.AutoFitGridRecyclerView
+        android:clipToPadding="false"
+        android:columnWidth="119dp"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="auto_fit"
         android:id="@+id/image_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

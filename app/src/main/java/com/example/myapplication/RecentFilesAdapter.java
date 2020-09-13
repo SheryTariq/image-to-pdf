@@ -30,7 +30,7 @@ public class RecentFilesAdapter extends RecyclerView.Adapter<RecentFilesAdapter.
     @NonNull
     @Override
     public RecentFilesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_simple_list_view, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recent_file, parent, false);
         return new RecentFilesViewHolder(itemView);
     }
 
