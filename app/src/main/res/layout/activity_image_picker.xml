@@ -28,7 +28,7 @@
             android:padding="15dp"
             android:text="@string/looks_like_you_don_t_have_any_images"
             android:textAlignment="center"
-            android:textAppearance="?android:textAppearanceMedium"
+            android:textAppearance="?android:textAppearanceSmall"
             android:textStyle="bold" />
     </LinearLayout>
 

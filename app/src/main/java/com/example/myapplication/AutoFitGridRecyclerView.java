@@ -14,17 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class AutoFitGridRecyclerView extends RecyclerView {
     public GridLayoutManager gridLayoutManager;
+    private static final String TAG = "AutoFitGridRecyclerView";
     private int columnWidth = -1;
-    private int spanCount = 0;
     ItemDecoration itemDecoration = new ItemDecoration() {
         @Override
         public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull State state) {
+            GridLayoutManager layoutManager = (GridLayoutManager) parent.getLayoutManager();
+            assert layoutManager != null;
+            int span = layoutManager.getSpanCount();
             int position = parent.getChildAdapterPosition(view);
-            int column = position % spanCount;
-            outRect.left = column / spanCount;
-            outRect.right = 1 - (column + 1) / spanCount;
-            if (position >= spanCount) {
-                outRect.top = 1; // item top
+            int column = position % span;
+            outRect.left = column * 2 / span;
+            outRect.right = 2 - (column + 1) * 2 / span;
+            if (position >= span) {
+                outRect.top = 2; // item top
             }
         }
     };
@@ -48,6 +51,7 @@ public class AutoFitGridRecyclerView extends RecyclerView {
     public void addItemDecoration(@NonNull ItemDecoration decor) {
         super.addItemDecoration(itemDecoration);
     }
+
 
     private void initialization(Context context, AttributeSet attrs) {
         try {
@@ -78,7 +82,7 @@ public class AutoFitGridRecyclerView extends RecyclerView {
         super.onMeasure(widthSpec, heightSpec);
         try {
             if (columnWidth > 0) {
-                spanCount = Math.max(1, getMeasuredWidth() / columnWidth);
+                int spanCount = Math.max(1, getMeasuredWidth() / columnWidth);
                 gridLayoutManager.setSpanCount(spanCount);
             }
         } catch (Exception e) {

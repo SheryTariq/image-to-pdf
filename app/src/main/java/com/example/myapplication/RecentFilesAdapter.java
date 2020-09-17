@@ -96,7 +96,6 @@ public class RecentFilesAdapter extends RecyclerView.Adapter<RecentFilesAdapter.
 
     }
 
-
     @Override
     public int getItemCount() {
         return items.size();
