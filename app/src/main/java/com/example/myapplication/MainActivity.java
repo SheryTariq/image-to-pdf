@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     Bitmap mImageBitmap;
     String mFileName;
     View emptyView;
+    long lastPress;
+    Toast backPress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setAdapter();
         setAddButton();
-        mRecyclerView.setVisibility((items.isEmpty()) ? View.GONE : View.VISIBLE);
-        emptyView.setVisibility((items.isEmpty()) ? View.VISIBLE : View.GONE);
+        setVisibility();
     }
 
     private void itemAdded() {
@@ -61,8 +62,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mRecyclerView.setVisibility((items.isEmpty()) ? View.GONE : View.VISIBLE);
-        emptyView.setVisibility((items.isEmpty()) ? View.VISIBLE : View.GONE);
+        setVisibility();
     }
 
     private void setAddButton() {
@@ -101,13 +101,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.remove_all:
                 items.clear();
                 mAdapter.notifyDataSetChanged();
+                setVisibility();
                 if (toast != null) {
                     toast.cancel();
                 }
@@ -152,7 +152,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setFileName() {
-        mFileName = new SimpleDateFormat("ddMMyyyy_hhmmss", Locale.US).format(new Date());
+        mFileName = "IMG_";
+        mFileName += new SimpleDateFormat("yyyMMdd_HHmmss", Locale.US).format(new Date());
     }
 
     @Override
@@ -163,5 +164,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastPress > 5000) {
+            backPress = Toast.makeText(this, "Press back again to leave", Toast.LENGTH_SHORT);
+            backPress.show();
+            lastPress = currentTime;
+        } else {
+            if (backPress != null) backPress.cancel();
+            super.onBackPressed();
+        }
+    }
+
+    public void setVisibility() {
+        mRecyclerView.setVisibility((items.isEmpty()) ? View.GONE : View.VISIBLE);
+        emptyView.setVisibility((items.isEmpty()) ? View.VISIBLE : View.GONE);
     }
 }

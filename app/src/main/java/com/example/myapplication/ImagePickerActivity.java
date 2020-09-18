@@ -7,7 +7,6 @@ import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,9 +21,7 @@ public class ImagePickerActivity extends AppCompatActivity implements LoaderMana
     public static final int IMAGE_PICKER_LOADER = 0;
     private static final String TAG = "ImagePickerActivity";
     ImageCursorAdapter mImageCursorAdapter;
-    RecyclerView.LayoutManager mLayoutManager;
     RecyclerView mRecyclerView;
-    RelativeLayout mRelativeLayout;
     View emptyView;
 
     @Override
